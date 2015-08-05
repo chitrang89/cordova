@@ -19,7 +19,19 @@ document.addEventListener('deviceready',function() {
 
           // Save the JWT token.
           localStorage.setItem('userToken', token);
-
+            
+            /*var response = $.ajax({
+                url: 'http://testczapi.azurewebsites.net/api/secured/ping',
+                method: 'GET',
+                success: function(resp) {
+                    $('#display-stuff').text(resp);
+                }
+            });*/
+            
+            
+            
+            
+            
           // Save the profile
           userProfile = profile;
 
@@ -41,17 +53,29 @@ document.addEventListener('deviceready',function() {
       }
     });
 
-    $('.btn-api').click(function(e) {
+    $('.btn-auth').click(function(e) {
       // Just call your API here. The header will be sent
       $.ajax({
-        url: 'http://auth0-nodejsapi-sample.herokuapp.com/secured/ping',
+        url: 'http://testczapi.azurewebsites.net/api/secured/ping',
         method: 'GET'
       }).then(function(data, textStatus, jqXHR) {
-        alert("The request to the secured enpoint was successfull");
+        $('#display-stuff').text(data);
       }, function() {
         alert("You need to download the server seed and start it to call this API");
       });
-    });
+    })
+    
+    $('.btn-unauth').click(function(e) {
+      // Just call your API here. The header will be sent
+      $.ajax({
+        url: 'http://testczapi.azurewebsites.net/api/ping',
+        method: 'GET'
+      }).then(function(data, textStatus, jqXHR) {
+        $('#display-stuff').text(data);
+      }, function() {
+        alert("You need to download the server seed and start it to call this API");
+      });
+    })
 
 
 }, false);
