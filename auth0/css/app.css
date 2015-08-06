@@ -5,3 +5,6 @@
 body {
   text-align: center;
 }
+element {
+    -webkit-overflow-scrolling: touch;
+}
